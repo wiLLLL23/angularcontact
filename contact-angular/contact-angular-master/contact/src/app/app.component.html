@@ -1,0 +1,25 @@
+<div class="jumbotron">
+  <h1>
+    {{title}}
+  </h1>
+
+  <br>
+  <br>
+
+  <app-user-data></app-user-data>
+
+  <br>
+  <br>
+
+  <div class="row">
+    <div class="col">
+      <app-user-list (idSelected)="showdetail($event)"></app-user-list>
+    </div>
+
+    <div class="col">
+      <app-user-details [contact]="contactClicked"></app-user-details>
+    </div>
+
+  </div>
+
+</div>

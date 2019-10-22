@@ -1,0 +1,77 @@
+<h3 class="container col-6">
+  Dados do contato
+</h3>
+
+<div class="card container col-6">
+  <form class="card-block" (ngSubmit)="saveAction()" *ngIf="!isSave" #formData="ngForm">
+
+    <div class="form-group" [class.has-success]="name.valid" [class.has-danger]="name.invalid">
+      <label for="name">Nome</label>
+      <input class="form-control" [class.form-control-success]="name.valid"
+             type="text" id="name" [(ngModel)]="_name" name="name" #name="ngModel" placeholder="digite o nome" required>
+
+      <div [hidden]="name.valid || name.pristine">
+        <small [ngClass]="{'form-control-danger': 'name.invalid || name.dirty',
+                           'form-control-feedback': 'name.invalid || name.dirty'}">O nome é um campo obrigatório
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-success]="telephone.valid" [class.has-danger]="telephone.invalid">
+      <label for="telephone">Telefone</label>
+      <input class="form-control" [class.form-control-success]="telephone.valid"
+             type="text" id="telephone" [(ngModel)]="_telephone" name="telephone" #telephone="ngModel"
+             placeholder="digite o telefone" required>
+
+      <div [hidden]="telephone.valid || telephone.pristine">
+        <small [ngClass]="{'form-control-danger': 'telephone.invalid || telephone.dirty',
+                         'form-control-feedback': 'telephone.invalid || telephone.dirty'}">O telefone é um campo
+          obrigatório!
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" type="text" id="email" [(ngModel)]="_email" name="email" #email="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="type">Tipo do Contato</label>
+      <select id="type" [(ngModel)]="_type" name="tipo" #type="ngModel">
+        <option class="form-control" *ngFor='let item of types' [value]="item">{{item}}</option>
+      </select>
+    </div>
+
+    <button class="btn btn-success" type="submit" [disabled]="formData.invalid">Cadastrar</button>
+
+  </form>
+
+  <div class="card card-block container col-6" *ngIf="isSave">
+    <div>
+      <h2>Dados do contato Enviado!</h2>
+    </div>
+
+    <div>
+      <p>Nome do Contato: <strong>{{_name}}</strong></p>
+    </div>
+
+    <div>
+      <p>Telepone do Contato: <strong>{{_telephone}}</strong></p>
+    </div>
+
+    <div>
+      <p>Email do Contato: <strong>{{_email}}</strong></p>
+    </div>
+
+    <div>
+      <p>Tipo de Contato: <strong>{{_type}}</strong></p>
+    </div>
+
+    <button class="btn btn-primary" (click)="backAction()">Voltar</button>
+
+
+  </div>
+
+
+</div>
